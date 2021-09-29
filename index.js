@@ -30,11 +30,16 @@ const getScoreVariation = (scorecard) => {
 
 /**
  * Exercise 2 - fix this function
- * This function sort a list of scorecards by "score_variant"
+ * This function sort a list of scorecards by "score_variation"
  */
-const sortByScoreVariant = (sortOrder, scorecards) => {
-  const sortDescending = R.sortWith([R.descend(R.prop('score_variant'))]);
-  const sortAscending = R.sortWith([R.ascend(R.prop('score_variant'))]);
+const sortByScoreVariation = (sortOrder, scorecards) => {
+  
+  if (!['desc', 'asc'].includes(sortOrder)) {
+    throw new Error('Invalid sort order');
+  }
+
+  const sortDescending = R.sortWith([R.descend(R.prop('score_variation'))]);
+  const sortAscending = R.sortWith([R.ascend(R.prop('score_variation'))]);
 
   // SHOULD RETURN sortAscending when sortOrder === 'asc'
   return sortOrder === 'asc'
@@ -60,14 +65,14 @@ const fetchScorecards = (sortOrder) => new Promise((resolve, reject) => {
   const scorecards = [];
   const dataStreamReader = dataReader();
 
-  dataStreamReader.on('data', (chunk) => {
+  dataStreamReader.on('data', (scorecard) => {
     // each chunk of data is an scorecard with the following properties
     // { "domain": "securityscorecard.com", "previous_score": 100, "current_score": 90 }
-    console.log('Chunk', chunk)
+    console.log('Chunk', scorecard)
   });
 
-  // RESOLVE TO SORTED SCORECARDS BY "score_variant"
-  resolve(sortByScorecard(sortOrder, socorecards));
+  // RESOLVE TO SORTED SCORECARDS BY "score_variation"
+  resolve(sortByScorecard(sortOrder, scorecards));
 });
 
 const printDowngradedScorecards = async () => {
@@ -75,14 +80,14 @@ const printDowngradedScorecards = async () => {
   // print sorted scorecards by grade_drop
   const scorecards = await fetchScorecards();
 
-
+  // PUT CODE HERE TO LOG the scorecards
 
 };
 
 printDowngradedScorecards();
 
 module.exports = {
-  sortByScoreVariant,
+  sortByScoreVariation,
   fetchScorecards,
   getScoreVariation,
 };
