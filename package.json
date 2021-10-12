@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chance": "^1.1.8",
     "lodash": "^4.17.21",
     "rambda": "^6.9.0",
     "ramda": "^0.27.1"

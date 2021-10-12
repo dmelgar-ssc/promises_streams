@@ -11,7 +11,7 @@ const { dataReader } = require('./utils');
  * every scorecard obj has the following structure
  * {
  *   "domain": "scorecard.com",
- *   "previous_socre": 80,
+ *   "previous_score": 80,
  *   "current_score": 70
  * }
  * 
