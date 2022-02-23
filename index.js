@@ -78,7 +78,7 @@ const fetchScorecards = (sortOrder) => new Promise((resolve, reject) => {
 const printDowngradedScorecards = async () => {
   
   // print sorted scorecards by grade_drop
-  const scorecards = await fetchScorecards();
+  const scorecards = await fetchScorecards('desc');
 
   // PUT CODE HERE TO LOG the scorecards
 
